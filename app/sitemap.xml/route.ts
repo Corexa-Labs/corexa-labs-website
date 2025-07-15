@@ -12,9 +12,20 @@ export async function GET() {
     'custom-software',
     'devops-consulting',
   ];
+
+  // --- BLOG ROUTES ---
+  let blogSlugs: string[] = [];
+  try {
+    const blogsData = await import('../blogs/blogs-data.json');
+    blogSlugs = blogsData.default.map((b: any) => b.slug);
+  } catch (e) {
+    blogSlugs = [];
+  }
+
   const urls = [
     ...staticRoutes.map((route) => `${baseUrl}/${route}`),
     ...serviceSlugs.map((slug) => `${baseUrl}/services/${slug}`),
+    ...blogSlugs.map((slug) => `${baseUrl}/blogs/${slug}`),
   ];
   const body = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

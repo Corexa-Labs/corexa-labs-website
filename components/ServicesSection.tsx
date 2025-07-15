@@ -17,7 +17,7 @@ export function ServicesSection() {
               <p className="text-gray-600 dark:text-gray-300">
                 Crafting responsive, high-performance web applications tailored to your business needs.
               </p>
-              <Link href="#" className="text-corexa-purple-500 hover:underline flex items-center">
+              <Link href="/services/web-development" aria-label="Learn more about Web Development" className="text-corexa-purple-500 hover:underline flex items-center">
                 Learn More <ArrowRight className="ml-1 h-4 w-4" />
               </Link>
             </div>
@@ -29,7 +29,7 @@ export function ServicesSection() {
               <p className="text-gray-600 dark:text-gray-300">
                 Building intuitive and engaging mobile experiences for iOS and Android platforms.
               </p>
-              <Link href="#" className="text-corexa-blue-500 hover:underline flex items-center">
+              <Link href="/services/mobile-app-development" aria-label="Learn more about Mobile App Development" className="text-corexa-blue-500 hover:underline flex items-center">
                 Learn More <ArrowRight className="ml-1 h-4 w-4" />
               </Link>
             </div>
@@ -41,7 +41,7 @@ export function ServicesSection() {
               <p className="text-gray-600 dark:text-gray-300">
                 Integrating intelligent solutions to automate processes and derive insights from data.
               </p>
-              <Link href="#" className="text-corexa-purple-500 hover:underline flex items-center">
+              <Link href="/services/ai-machine-learning" className="text-corexa-purple-500 hover:underline flex items-center">
                 Learn More <ArrowRight className="ml-1 h-4 w-4" />
               </Link>
             </div>
@@ -53,7 +53,7 @@ export function ServicesSection() {
               <p className="text-gray-600 dark:text-gray-300">
                 Designing and deploying scalable, secure cloud infrastructures on leading platforms.
               </p>
-              <Link href="#" className="text-corexa-blue-500 hover:underline flex items-center">
+              <Link href="/services/cloud-solutions" className="text-corexa-blue-500 hover:underline flex items-center">
                 Learn More <ArrowRight className="ml-1 h-4 w-4" />
               </Link>
             </div>
@@ -65,7 +65,7 @@ export function ServicesSection() {
               <p className="text-gray-600 dark:text-gray-300">
                 Developing bespoke software applications to meet your unique operational requirements.
               </p>
-              <Link href="#" className="text-corexa-purple-500 hover:underline flex items-center">
+              <Link href="/services/custom-software" className="text-corexa-purple-500 hover:underline flex items-center">
                 Learn More <ArrowRight className="ml-1 h-4 w-4" />
               </Link>
             </div>
@@ -77,7 +77,7 @@ export function ServicesSection() {
               <p className="text-gray-600 dark:text-gray-300">
                 Optimizing your development pipeline and providing expert technical guidance.
               </p>
-              <Link href="#" className="text-corexa-blue-500 hover:underline flex items-center">
+              <Link href="/services/devops-consulting" className="text-corexa-blue-500 hover:underline flex items-center">
                 Learn More <ArrowRight className="ml-1 h-4 w-4" />
               </Link>
             </div>

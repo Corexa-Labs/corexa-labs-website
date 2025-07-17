@@ -3,6 +3,7 @@ export async function GET() {
   const staticRoutes = [
     '',
     'services',
+    'team', // Added team page to sitemap
   ];
   const serviceSlugs = [
     'web-development',

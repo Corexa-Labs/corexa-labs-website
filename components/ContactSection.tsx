@@ -25,16 +25,19 @@ export function ContactSection() {
               </div>
               <div className="flex items-center space-x-4">
                 <Phone className="h-6 w-6 text-corexa-blue-500" />
-                <a href="tel:+1234567890" className="hover:text-corexa-purple-500 transition-colors">
-                  +1 (234) 567-890
+                <a href="tel:+923097422116" className="hover:text-corexa-purple-500 transition-colors">
+                  +92 309 7422116 ,
+                </a>
+                <a href="tel:+923000142478" className="hover:text-corexa-purple-500 transition-colors">
+                +92 300 0142478
                 </a>
               </div>
               <div className="flex items-start space-x-4">
                 <MapPin className="h-6 w-6 text-corexa-purple-500 flex-shrink-0 mt-1" />
-                <span>123 Innovation Drive, Suite 400, Tech City, TX 78701, USA</span>
+                <span>PWD, Islamabad, Pakistan</span>
               </div>
             </div>
-            <div className="flex space-x-6 pt-4">
+            {/* <div className="flex space-x-6 pt-4">
               <Link href="#" className="text-gray-500 hover:text-corexa-blue-500 transition-colors">
                 <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path fillRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33V22H12c5.523 0 10-4.477 10-10Z" clipRule="evenodd" />
@@ -59,9 +62,9 @@ export function ContactSection() {
                 </svg>
                 <span className="sr-only">Instagram</span>
               </Link>
-            </div>
+            </div> */}
           </div>
-          <div className="bg-gray-100 dark:bg-gray-800 p-8 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700">
+          {/* <div className="bg-gray-100 dark:bg-gray-800 p-8 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700">
             <form className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -103,7 +106,7 @@ export function ContactSection() {
                 Send Message
               </Button>
             </form>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

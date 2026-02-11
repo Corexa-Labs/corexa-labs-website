@@ -1,180 +1,93 @@
 "use client"
 import { Button } from "@/components/ui/button"
-import { ParticleBackground } from "@/components/particles-background"
 import { motion } from "framer-motion"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useMemo } from "react"
+import { Canvas } from "@react-three/fiber"
+import { OrbitControls } from "@react-three/drei"
+import { Color } from "three"
 
-const floatingTagsData = [
-  "AI/ML",
-  "Cloud Solutions",
-  "Web Development",
-  "Mobile Apps",
-  "DevOps",
-  "Blockchain",
-  "UI/UX Design",
-  "Data Science",
-  "Cybersecurity",
-  "Product Strategy",
-  "Agile Methodologies",
-  "Big Data",
-  "IoT Integration",
-  "API Development",
-  "Consulting",
-]
 
 export function HeroSection() {
-  const [currentParticleCount, setCurrentParticleCount] = useState(80)
-  const [tagStyles, setTagStyles] = useState<Array<{
-    initial: { opacity: number; left: string; top: string; rotate: number; scale: number }
-    animate: { opacity: number[]; left: string[]; top: string[]; rotate: number[]; scale: number[] }
-    transition: { duration: number; repeat: number; repeatType: "loop"; ease: string; delay: number; times: number[] }
-    className: string
-  }>>([])
+  const [showContent, setShowContent] = useState(false)
 
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setCurrentParticleCount(30)
-      } else {
-        setCurrentParticleCount(80)
-      }
-    }
-    handleResize()
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
+    // Show content after a brief delay to allow entry animation to complete
+    const timer = setTimeout(() => {
+      setShowContent(true)
+    }, 100)
+    return () => clearTimeout(timer)
   }, [])
 
-  useEffect(() => {
-    const randomStyleClasses = [
-      "bg-white/70 dark:bg-gray-800/70 text-gray-800 dark:text-gray-200 rounded-full px-4 py-2 shadow-md",
-      "bg-corexa-blue-50/70 dark:bg-corexa-blue-950/70 text-corexa-blue-800 dark:text-corexa-blue-200 rounded-lg px-5 py-3 shadow-lg",
-      "bg-corexa-purple-50/70 dark:bg-corexa-purple-950/70 text-corexa-purple-800 dark:text-corexa-purple-200 rounded-md px-3 py-1 shadow-sm",
-      "bg-white/80 dark:bg-gray-900/80 text-gray-900 dark:text-gray-100 rounded-full px-6 py-3 shadow-xl border border-gray-200 dark:border-gray-700",
-      "bg-corexa-blue-100/70 dark:bg-corexa-blue-800/70 text-corexa-blue-900 dark:text-corexa-blue-100 rounded-full px-4 py-2 text-sm",
-      "bg-corexa-purple-100/70 dark:bg-corexa-purple-800/70 text-corexa-purple-900 dark:text-corexa-purple-100 rounded-xl px-5 py-2 text-base",
-    ]
-    const getPositionInSafeZone = () => {
-      const zones = [
-        { xMin: 0, xMax: 30, yMin: 0, yMax: 30 },
-        { xMin: 70, xMax: 100, yMin: 0, yMax: 30 },
-        { xMin: 0, xMax: 30, yMin: 70, yMax: 100 },
-        { xMin: 70, xMax: 100, yMin: 70, yMax: 100 },
-        { xMin: 0, xMax: 20, yMin: 30, yMax: 70 },
-        { xMin: 80, xMax: 100, yMin: 30, yMax: 70 },
-        { xMin: 30, xMax: 70, yMin: 0, yMax: 20 },
-        { xMin: 30, xMax: 70, yMin: 80, yMax: 100 },
-      ]
-      const selectedZone = zones[Math.floor(Math.random() * zones.length)]
-      const x = Math.random() * (selectedZone.xMax - selectedZone.xMin) + selectedZone.xMin
-      const y = Math.random() * (selectedZone.yMax - selectedZone.yMin) + selectedZone.yMin
-      return { x, y }
-    }
-    const newStyles = floatingTagsData.map(() => {
-      const initialPos = getPositionInSafeZone()
-      const initialRotate = Math.random() * 40 - 20
-      const initialScale = Math.random() * 0.4 + 0.8
-      const nextPos = getPositionInSafeZone()
-      const nextRotate = Math.random() * 40 - 20
-      const nextScale = Math.random() * 0.4 + 0.8
-      const duration = Math.random() * 10 + 10
-      const delay = Math.random() * 2
-      const randomClass = randomStyleClasses[Math.floor(Math.random() * randomStyleClasses.length)]
-      return {
-        initial: {
-          left: `${initialPos.x}%`,
-          top: `${initialPos.y}%`,
-          opacity: 0,
-          rotate: initialRotate,
-          scale: initialScale,
-        },
-        animate: {
-          opacity: [0, 1, 1, 0, 0],
-          rotate: [initialRotate, initialRotate, initialRotate, initialRotate, nextRotate],
-          scale: [initialScale, initialScale, initialScale, initialScale, nextScale],
-          left: [`${initialPos.x}%`, `${initialPos.x}%`, `${initialPos.x}%`, `${initialPos.x}%`, `${nextPos.x}%`],
-          top: [`${initialPos.y}%`, `${initialPos.y}%`, `${initialPos.y}%`, `${initialPos.y}%`, `${nextPos.y}%`],
-        },
-        transition: {
-          duration: duration,
-          repeat: Number.POSITIVE_INFINITY,
-          repeatType: "loop" as const,
-          ease: "easeInOut",
-          delay: delay,
-          times: [0, 0.1, 0.8, 0.9, 1],
-        },
-        className: randomClass,
-      }
-    })
-    setTagStyles(newStyles)
+  
+
+  const bgGradient = useMemo(() => {
+    return "bg-[radial-gradient(1200px_600px_at_50%_-10%,rgba(59,130,246,0.15),transparent_60%),radial-gradient(800px_400px_at_80%_20%,rgba(147,51,234,0.12),transparent_60%),linear-gradient(180deg,rgba(0,0,0,0.85),rgba(10,10,10,0.95))]"
   }, [])
 
   return (
-    <section
+    <motion.section
       id="hero"
-      className="relative min-h-[calc(100vh-64px)] flex flex-col items-center justify-center px-4 py-16 md:py-24 bg-gradient-to-br from-corexa-blue-50 to-corexa-purple-50 dark:from-gray-900 dark:to-black overflow-hidden text-center"
+      className={`relative min-h-[calc(100vh-64px)] flex flex-col items-center justify-center px-4 py-16 md:py-24 ${bgGradient} overflow-hidden text-center`}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: showContent ? 1 : 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
     >
-      <ParticleBackground particleCount={currentParticleCount} />
-      {/* Only render floating tags if ready */}
-      {tagStyles.length === floatingTagsData.length && floatingTagsData.map((tag, index) => (
-        <motion.div
-          key={index}
-          initial={{
-            opacity: tagStyles[index]?.initial.opacity,
-            rotate: tagStyles[index]?.initial.rotate,
-            scale: tagStyles[index]?.initial.scale,
-          }}
-          animate={{
-            opacity: tagStyles[index]?.animate.opacity,
-            rotate: tagStyles[index]?.animate.rotate,
-            scale: tagStyles[index]?.animate.scale,
-          }}
-          transition={tagStyles[index]?.transition as any}
-          className={`absolute z-10 whitespace-nowrap backdrop-blur-sm ${tagStyles[index]?.className}`}
-          style={{
-            left: tagStyles[index]?.initial.left,
-            top: tagStyles[index]?.initial.top,
-            transform: "translate(-50%, -50%)",
-          }}
-        >
-          {tag}
-        </motion.div>
-      ))}
-      {/* Main hero content always visible */}
+      <div className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]">
+        <Canvas camera={{ position: [0, 0, 6], fov: 50 }} dpr={[1, 2]}>
+          <color attach="background" args={[new Color('#000000')]} />
+          <ambientLight intensity={0.2} />
+          <directionalLight position={[5, 5, 5]} intensity={1.2} color={new Color('#93c5fd')} />
+          <pointLight position={[-5, -3, -2]} intensity={0.6} color={new Color('#c4b5fd')} />
+          <mesh rotation={[0.6, 0.2, 0.1]}
+            onUpdate={(m) => { m.rotation.y += 0.005; m.rotation.x += 0.002 }}>
+            <icosahedronGeometry args={[1.5, 1]} />
+            <meshStandardMaterial metalness={0.6} roughness={0.2} color={new Color('#60a5fa')} emissive={new Color('#1f2937')} />
+          </mesh>
+          <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={0.6} />
+        </Canvas>
+      </div>
+
+      {/* Floating service pills removed */}
+
       <div className="relative z-20 container mx-auto max-w-4xl space-y-6">
         <motion.p
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-lg font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider"
+          animate={{ opacity: showContent ? 1 : 0, y: showContent ? 0 : 20 }}
+          transition={{ duration: 0.6, delay: showContent ? 0.2 : 0 }}
+          className="text-sm md:text-base font-semibold text-gray-300 uppercase tracking-[0.3em]"
         >
           Leading Software Agency
         </motion.p>
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight text-gray-900 dark:text-white"
+          animate={{ opacity: showContent ? 1 : 0, y: showContent ? 0 : 20 }}
+          transition={{ duration: 0.6, delay: showContent ? 0.4 : 0 }}
+          className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight text-white"
+          style={{
+            fontFamily: "var(--font-orbitron), monospace",
+            textShadow: "0 0 30px rgba(59,130,246,0.35)",
+          }}
         >
           COREXA LABS
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-xl text-corexa-purple-600 dark:text-corexa-purple-400 font-medium"
+          animate={{ opacity: showContent ? 1 : 0, y: showContent ? 0 : 20 }}
+          transition={{ duration: 0.6, delay: showContent ? 0.6 : 0 }}
+          className="text-lg md:text-xl text-corexa-purple-300 font-medium"
         >
           INNOVATION DRIVES OUR SOLUTIONS, PRECISION DEFINES OUR CRAFT
         </motion.p>
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
+          animate={{ opacity: showContent ? 1 : 0, scale: showContent ? 1 : 0.8 }}
+          transition={{ duration: 0.6, delay: showContent ? 0.8 : 0 }}
         >
-          <Button className="mt-8 px-8 py-3 text-lg bg-corexa-blue-600 hover:bg-corexa-blue-700 text-white rounded-full shadow-lg transition-all duration-300 hover:scale-105">
+          <Button className="mt-8 px-8 py-3 text-lg bg-corexa-blue-600 hover:bg-corexa-blue-700 text-white rounded-full shadow-[0_0_40px_rgba(59,130,246,0.35)] transition-all duration-300 hover:scale-105">
             Contact Us
           </Button>
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   )
 } 

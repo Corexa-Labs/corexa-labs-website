@@ -1,6 +1,5 @@
 import Image from "next/image"
-import { CardContent, CardTitle } from "@/components/ui/card"
-import { DiagonalCard } from "@/components/diagonal-card"
+import { CardTitle } from "@/components/ui/card"
 
 const coreValues = [
   {
@@ -61,20 +60,26 @@ export function AboutSection() {
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {coreValues.map((value, index) => (
-              <DiagonalCard
-                key={index}
-                className="backdrop-blur-md bg-white/60 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02]"
-              >
-                <CardContent className="flex flex-col items-center text-center p-6 space-y-4">
-                  <div className="p-4 rounded-full bg-corexa-purple-100 dark:bg-corexa-purple-900 text-corexa-purple-700 dark:text-corexa-purple-300 shadow-md">
-                    {value.icon}
+              <div key={index} className="relative group">
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-corexa-purple-500/40 via-corexa-blue-500/40 to-transparent opacity-60 blur-xl group-hover:opacity-90 transition duration-700" />
+                <div className="relative h-full rounded-3xl bg-gradient-to-b from-slate-950/90 via-slate-900/95 to-black/90 border border-white/10 shadow-[0_18px_60px_rgba(15,23,42,0.85)] overflow-hidden">
+                  <div className="absolute inset-x-10 -top-24 h-40 bg-gradient-to-br from-corexa-purple-400/30 via-corexa-blue-400/20 to-transparent blur-3xl" />
+                  <div className="relative flex flex-col items-center text-center p-8 space-y-5">
+                    <div className="relative">
+                      <div className="absolute -inset-4 bg-gradient-to-br from-corexa-purple-500/35 via-corexa-blue-500/35 to-transparent opacity-60 blur-2xl group-hover:opacity-90 group-hover:blur-3xl transition duration-500" />
+                      <div className="relative inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-slate-900 via-slate-950 to-black border border-white/15 shadow-[0_14px_40px_rgba(15,23,42,0.9)]">
+                        {value.icon}
+                      </div>
+                    </div>
+                    <CardTitle className="text-xl font-semibold text-white tracking-tight">
+                      {value.title}
+                    </CardTitle>
+                    <p className="text-sm text-slate-300/80 leading-relaxed">
+                      {value.description}
+                    </p>
                   </div>
-                  <CardTitle className="text-xl font-semibold text-gray-900 dark:text-white">
-                    {value.title}
-                  </CardTitle>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">{value.description}</p>
-                </CardContent>
-              </DiagonalCard>
+                </div>
+              </div>
             ))}
           </div>
         </div>

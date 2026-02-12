@@ -1,4 +1,3 @@
-import Image from "next/image"
 import { Quote } from "lucide-react"
 
 import {
@@ -13,24 +12,32 @@ import { AspectRatio } from "@/components/ui/aspect-ratio"
 const testimonialSlides = [
   {
     type: "video" as const,
-    title: "Client Feedback – Product Launch",
+    title: "David Emmerson - Cherubgyre",
     description:
       "A short highlight from a recent product launch where our team handled end-to-end development.",
     videoUrl: "https://www.youtube.com/embed/rIxqCfBEb7Y",
   },
   {
     type: "video" as const,
-    name: "Client Feedback – AI Integration",
-    quote:
-      "A quick look at how our AI solutions improved decision‑making for one of our partners.",
-      avatar: "/images/testimonial-jane-doe.jpeg",
-      role: "CEO, Tech Solutions Inc.",
-
-    title: "Client Feedback – AI Integration",
+    name: "Nic Sullo - Swipe Bite",
+    title: "Nic Sullo - Swipe Bite",
     description:
       "A quick look at how our AI solutions improved decision‑making for one of our partners.",
     videoUrl: "https://www.youtube.com/embed/natiXsDSWTs",
   },
+  {
+    type: "text" as const,
+    role: "Swipe Bite Research Docs and Continuous Support",
+    quote:
+      "Shaheer is one of the most genuinely personable and collaborative people I’ve worked with. He combines deep technical expertise with a calm, solutions-oriented mindset that makes complex challenges feel approachable. His architecture leadership is outstanding — thoughtful, scalable, and always focused on long-term success. I’ve learned a lot from working with him and have full confidence in continuing to build alongside him for a long time to come.",
+    name: "Nic Sullo",
+  },{
+    type: "text" as const,
+    role: "Blockchain Based Automated Application Submission System",
+    quote:
+      "Professional is & very attentive to details. Willing to advance their skillset to complete the project as wxpected. Absolute pleasure to work with and highly recommended, A+",
+    name: "Tonny Clarizio",
+  }
 
 ]
 
@@ -57,8 +64,11 @@ export function TestimonialsSection() {
         >
           <CarouselContent>
             {testimonialSlides.map((slide) => (
-              <CarouselItem key={slide.type === "video" ? slide.videoUrl : slide.name}>
-                <div className="relative group">
+              <CarouselItem
+                key={slide.type === "video" ? slide.videoUrl : slide.name}
+                className="flex items-center"
+              >
+                <div className="relative group w-full">
                   <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-corexa-purple-500/35 via-corexa-blue-500/25 to-transparent opacity-70 blur-2xl group-hover:opacity-95 group-hover:blur-3xl transition duration-700" />
 
                   <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-slate-950/95 via-slate-900 to-black shadow-[0_20px_70px_rgba(15,23,42,0.9)] p-6 md:p-8">
@@ -89,13 +99,13 @@ export function TestimonialsSection() {
                         <p className="max-w-2xl text-balance text-sm italic text-slate-200 md:text-base">
                           “{slide.quote}”
                         </p>
-                        <div className="flex items-center space-x-3 pt-2">
-                          <Image
-                            src={slide.avatar || ""}
-                            alt={`${slide.name} Avatar`}
-                            width={64}
-                            height={64}
-                            className="h-14 w-14 rounded-full object-cover"
+                        <div className="flex items-center justify-center gap-3 pt-2">
+                          <img
+                            src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(slide.name)}`}
+                            alt=""
+                            width={56}
+                            height={56}
+                            className="h-14 w-14 rounded-full object-cover bg-slate-700"
                           />
                           <div className="text-left">
                             <p className="font-semibold text-white">

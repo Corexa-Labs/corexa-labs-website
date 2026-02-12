@@ -25,16 +25,13 @@ export function ContactSection() {
               </div>
               <div className="flex items-center space-x-4">
                 <Phone className="h-6 w-6 text-corexa-blue-500" />
-                <a href="tel:+923097422116" className="hover:text-corexa-purple-500 transition-colors">
-                  +92 309 7422116 ,
-                </a>
-                <a href="tel:+923000142478" className="hover:text-corexa-purple-500 transition-colors">
-                +92 300 0142478
+                <a href="tel:+1 (705) 482-3454" className="hover:text-corexa-purple-500 transition-colors">
+                +1 (705) 482-3454 ,
                 </a>
               </div>
               <div className="flex items-start space-x-4">
                 <MapPin className="h-6 w-6 text-corexa-purple-500 flex-shrink-0 mt-1" />
-                <span>PWD, Islamabad, Pakistan</span>
+                <span>Bahria Town, Islamabad, Pakistan</span>
               </div>
             </div>
             {/* <div className="flex space-x-6 pt-4">

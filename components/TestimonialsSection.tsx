@@ -17,14 +17,14 @@ const testimonialSlides = [
       "A short highlight from a recent product launch where our team handled end-to-end development.",
     videoUrl: "https://www.youtube.com/embed/rIxqCfBEb7Y",
   },
-  {
-    type: "video" as const,
-    name: "Nic Sullo - Swipe Bite",
-    title: "Nic Sullo - Swipe Bite",
-    description:
-      "A quick look at how our AI solutions improved decision‑making for one of our partners.",
-    videoUrl: "https://www.youtube.com/embed/natiXsDSWTs",
-  },
+  // {
+  //   type: "video" as const,
+  //   name: "Nic Sullo - Swipe Bite",
+  //   title: "Nic Sullo - Swipe Bite",
+  //   description:
+  //     "A quick look at how our AI solutions improved decision‑making for one of our partners.",
+  //   videoUrl: "https://www.youtube.com/embed/natiXsDSWTs",
+  // },
   {
     type: "text" as const,
     role: "Swipe Bite Research Docs and Continuous Support",

@@ -31,7 +31,7 @@ export function ContactSection() {
               </div>
               <div className="flex items-start space-x-4">
                 <MapPin className="h-6 w-6 text-corexa-purple-500 flex-shrink-0 mt-1" />
-                <span>Bahria Town, Islamabad, Pakistan</span>
+                <span>Albuqyerque, New Mexico</span>
               </div>
             </div>
             {/* <div className="flex space-x-6 pt-4">
